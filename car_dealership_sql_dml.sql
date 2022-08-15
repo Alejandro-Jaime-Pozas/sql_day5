@@ -28,15 +28,22 @@
 -- create 2 inserts using PROCEDURE after creating 2 rows of data for each table
 
 
-SELECT * FROM car ;
-SELECT * FROM customer ;
-SELECT * FROM salesperson;
-SELECT * FROM mechanic;
-
---FKs
-SELECT * FROM invoice ; 
-SELECT * FROM service_ticket ; 
-SELECT * FROM mechanic_service_ticket; 
+--SELECT * FROM car ;
+--SELECT * FROM customer ;
+--SELECT * FROM salesperson;
+--SELECT * FROM mechanic;
+--
+----FKs
+--SELECT * FROM invoice ; 
+--SELECT * FROM service_ticket ; 
+--SELECT * FROM mechanic_service_ticket; 
+--
+--SELECT first_name , last_name , make, model, color, year
+--FROM invoice i
+--JOIN customer cu
+--ON cu.customer_id = i.customer_id
+--JOIN car c 
+--ON c.car_id = i.car_id;
 
 ------------------------------------------------------------------------------------
 -- car
@@ -184,7 +191,22 @@ CALL add_customer('alex', 'jaime', 'aj@gmail.com', '455-4455') ;
 CALL add_customer('Betty', 'Lafarve', 'bl@someplace.com', '222-2222');
 
 
--- create a more complicated procedure here...
+
+-- create a more complicated fn here...create a fn takes customer_id as input, outputs total purchases from customer 
+--CREATE OR REPLACE FUNCTION customer_spend (id, integer)
+--RETURNS integer
+--LANGUAGE plpgsql
+--AS $$
+--	DECLARE sum_amount integer
+--BEGIN 
+--	SELECT customer_id, sum(amount) INTO sum_amount
+--	FROM invoice
+--	WHERE customer_id = id;
+--	RETURN sum_amount
+--END;
+--$$;
+
+
 
 
 
